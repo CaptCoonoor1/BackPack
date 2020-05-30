@@ -164,7 +164,7 @@ public final class BackPack extends JavaPlugin implements Listener {
                                             backpacks.add(s);
                                             //This determines how many backpacks player already has
                                         }
-                                        if (backpacks.size() == max) {
+                                        if (backpacks.size() >= max) {
                                             allowed = false;
                                             //Sets it to false if sender reached the limit
                                         } else if (backpacks.size() < max) {
