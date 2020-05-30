@@ -55,26 +55,15 @@ public final class BackPack extends JavaPlugin implements Listener {
                                 openPack.put(e.getPlayer().getName(), loreNum);
                                 MakeGui(e.getPlayer());
                             } else if (getConfig().getBoolean("OwnerOnly")){
-                                ArrayList<String> list = new ArrayList<>();
-                                    for (String s : getConfig().getConfigurationSection("data.").getKeys(false)) {
-                                        list.add(s);
-                                        if (list.contains(e.getPlayer().getName())) {
-                                            ArrayList<String> list1 = new ArrayList<>();
-                                            list1.addAll(getConfig().getConfigurationSection("data." + e.getPlayer().getName() + ".backpack.").getKeys(false));
-
-                                            String loreNumNospace = loreNum;
-                                            loreNumNospace = loreNumNospace.replaceFirst(" ", "");
-                                            Bukkit.broadcastMessage(loreNum);
-                                            Bukkit.broadcastMessage(loreNumNospace);
-                                            if (list1.contains(loreNumNospace)) {
-                                                openPack.put(e.getPlayer().getName(), loreNum);
-                                                MakeGui(e.getPlayer());
-                                            } else {
-                                                e.getPlayer().sendMessage(ChatColor.DARK_RED + "Only Owner can open this backpack");
-                                            }
-                                        }
-                                    }
-
+                                String lore1 = meta.getLore().get(1);
+                                String lore1Plain = ChatColor.stripColor(lore1);
+                                String lore1Owner = lore1Plain.replaceFirst("Owner ", "");
+                                if (e.getPlayer().getName().equals(lore1Owner)){
+                                    openPack.put(e.getPlayer().getName(), loreNum);
+                                    MakeGui(e.getPlayer());
+                                } else {
+                                    e.getPlayer().sendMessage(ChatColor.DARK_RED + "Only Owner can open this BackPack");
+                                }
                             }
                         }
                     }
@@ -432,9 +421,11 @@ public final class BackPack extends JavaPlugin implements Listener {
                     }
                 }
 
+                final ArrayList<String> l = new ArrayList<>();
 
+                StringUtil.copyPartialMatches(args[1], arguments, l);
 
-                return arguments;
+                return l;
             }
         }
         return null;
