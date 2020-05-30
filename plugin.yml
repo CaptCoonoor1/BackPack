@@ -1,0 +1,9 @@
+name: BackPack
+version: ${project.version}
+main: me.prostedeni.goodcraft.backpack.BackPack
+api-version: 1.13
+description: plugin that allows you to have backpacks
+commands:
+  backpack:
+    description: lets you make a backpack
+
