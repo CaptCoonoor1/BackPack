@@ -53,6 +53,9 @@ this permission allows player to execute **/backpack** command to get backpack
 * **backpack.make.(number)**
 this permission restricts players to make only this amount of backpacks per player. For example, if all players get permission **backpack.make.3**, they will only be able to execute this command three times.
 
+* **backpack.use**
+this permission allows player to open a backpack
+
 * **backpack.retrieve**
 this permission allows player to retrieve their (lost) backpack with all of it's contents back
 
