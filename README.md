@@ -1,6 +1,6 @@
 # BackPack
-Create backpacks in minecraft!
-All commands have autocomplete so it's very easy to navigate through them!
+Create backpacks on your minecraft server!
+All commands have autocomplete so it's very easy to navigate through them :)
 
 ## Commands
 
