@@ -1,8 +1,8 @@
 # BackPack
-Create backpacks on your minecraft server!
-All commands have autocomplete so it's very easy to navigate through them :)
+* **Create backpacks on your minecraft server!**
+* **All commands have autocomplete so it's very easy to navigate through them :)**
 
-__To download, go to https://github.com/prosteDeniGC/BackPack/releases__
+*To download, go to https://github.com/prosteDeniGC/BackPack/releases*
 
 ## Commands
 
