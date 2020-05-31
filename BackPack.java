@@ -51,19 +51,23 @@ public final class BackPack extends JavaPlugin implements Listener {
                             String lore = meta.getLore().get(0);
                             String lorePlain = ChatColor.stripColor(lore);
                             String loreNum = lorePlain.replaceFirst("BackPack", "");
-                            if (!(getConfig().getBoolean("OwnerOnly"))) {
-                                openPack.put(e.getPlayer().getName(), loreNum);
-                                MakeGui(e.getPlayer());
-                            } else if (getConfig().getBoolean("OwnerOnly")){
-                                String lore1 = meta.getLore().get(1);
-                                String lore1Plain = ChatColor.stripColor(lore1);
-                                String lore1Owner = lore1Plain.replaceFirst("Owner ", "");
-                                if (e.getPlayer().getName().equals(lore1Owner)){
+                            if (!openPack.containsValue(loreNum)) {
+                                if (!(getConfig().getBoolean("OwnerOnly"))) {
                                     openPack.put(e.getPlayer().getName(), loreNum);
                                     MakeGui(e.getPlayer());
-                                } else {
-                                    e.getPlayer().sendMessage(ChatColor.DARK_RED + "Only Owner can open this BackPack");
+                                } else if (getConfig().getBoolean("OwnerOnly")) {
+                                    String lore1 = meta.getLore().get(1);
+                                    String lore1Plain = ChatColor.stripColor(lore1);
+                                    String lore1Owner = lore1Plain.replaceFirst("Owner ", "");
+                                    if (e.getPlayer().getName().equals(lore1Owner)) {
+                                        openPack.put(e.getPlayer().getName(), loreNum);
+                                        MakeGui(e.getPlayer());
+                                    } else {
+                                        e.getPlayer().sendMessage(ChatColor.DARK_RED + "Only Owner can open this BackPack");
+                                    }
                                 }
+                            } else {
+                                e.getPlayer().sendMessage(ChatColor.DARK_RED + "This BackPack is open right now");
                             }
                         }
                     }
