@@ -53,7 +53,7 @@ when set to true, only Owner of the backpack can open it. by default anyone can 
 this permission allows player to execute **/backpack** command to get backpack
 
 * **backpack.make.(number)**
-this permission restricts players to make only this amount of backpacks per player. For example, if all players get permission **backpack.make.3**, they will only be able to execute this command three times.
+this permission restricts players to make only this amount of backpacks per player. For example, if all players get permission **backpack.make.3**, they will only be able to execute this command three times. This number *must* be lower than **MaxBackPacks:** in the config. If it isn't, please adjust **MaxBackPacks:** value in the config
 
 * **backpack.use**
 this permission allows player to open a backpack
