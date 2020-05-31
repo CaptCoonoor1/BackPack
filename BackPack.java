@@ -53,17 +53,30 @@ public final class BackPack extends JavaPlugin implements Listener {
                             String loreNum = lorePlain.replaceFirst("BackPack", "");
                             if (!openPack.containsValue(loreNum)) {
                                 if (!(getConfig().getBoolean("OwnerOnly"))) {
-                                    openPack.put(e.getPlayer().getName(), loreNum);
-                                    MakeGui(e.getPlayer());
-                                } else if (getConfig().getBoolean("OwnerOnly")) {
-                                    String lore1 = meta.getLore().get(1);
-                                    String lore1Plain = ChatColor.stripColor(lore1);
-                                    String lore1Owner = lore1Plain.replaceFirst("Owner ", "");
-                                    if (e.getPlayer().getName().equals(lore1Owner)) {
+                                    if (e.getPlayer().hasPermission("backpack.use")) {
                                         openPack.put(e.getPlayer().getName(), loreNum);
                                         MakeGui(e.getPlayer());
                                     } else {
-                                        e.getPlayer().sendMessage(ChatColor.DARK_RED + "Only Owner can open this BackPack");
+                                        e.getPlayer().sendMessage(ChatColor.DARK_RED + "You don't have sufficient permissions for that");
+                                    }
+                                } else if (getConfig().getBoolean("OwnerOnly")) {
+                                    if (!e.getPlayer().hasPermission("backpack.admin")) {
+                                        String lore1 = meta.getLore().get(1);
+                                        String lore1Plain = ChatColor.stripColor(lore1);
+                                        String lore1Owner = lore1Plain.replaceFirst("Owner ", "");
+                                        if (e.getPlayer().getName().equals(lore1Owner)) {
+                                            openPack.put(e.getPlayer().getName(), loreNum);
+                                            MakeGui(e.getPlayer());
+                                        } else {
+                                            e.getPlayer().sendMessage(ChatColor.DARK_RED + "Only Owner can open this BackPack");
+                                        }
+                                    } else {
+                                        if (e.getPlayer().hasPermission("backpack.use")) {
+                                            openPack.put(e.getPlayer().getName(), loreNum);
+                                            MakeGui(e.getPlayer());
+                                        } else {
+                                            e.getPlayer().sendMessage(ChatColor.DARK_RED + "You don't have sufficient permissions for that");
+                                        }
                                     }
                                 }
                             } else {
@@ -75,7 +88,7 @@ public final class BackPack extends JavaPlugin implements Listener {
             }
         }
     }
-
+    
     //Method that makes the GUI, and makes specified player open it
     public void MakeGui(Player player) {
         Inventory inv = Bukkit.createInventory(player, 27, "BackPack");
